@@ -36,3 +36,5 @@
 
 1. [Изучение технологии контейнеризации Docker - инструмента специалиста сопровождения и развертывания ПО.](https://drive.google.com/drive/folders/1c4YjmPd2UQCDivi8TZHjYJScl7TdtonD?usp=drive_link)
 2. Запись отчета в дневник по практике.
+
+# День 3/12 25.11.2025
