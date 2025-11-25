@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.36324.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "WindowsFormsApp1\WindowsFormsApp1.csproj", "{C47BDE58-072B-4615-8FCF-27D6C6F585F0}"
+EndProject
+Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "WindowsFormsApp2", "..\..\WindowsFormsApp2-20250905T140046Z-1-001\WindowsFormsApp2\WindowsFormsApp2\bin\Debug\WindowsFormsApp2.exe", "{0FFA2BAC-ED0F-407F-AF4D-9481EF8EBB6A}"
+	ProjectSection(DebuggerProjectSystem) = preProject
+		PortSupplier = 00000000-0000-0000-0000-000000000000
+		Executable = C:\Users\User\Documents\Visual Studio 2019\Новая папка (4)\WindowsFormsApp2-20250905T140046Z-1-001\WindowsFormsApp2\WindowsFormsApp2\bin\Debug\WindowsFormsApp2.exe
+		RemoteMachine = DESKTOP-2A2BHRA
+		StartingDirectory = C:\Users\User\Documents\Visual Studio 2019\Новая папка (4)\WindowsFormsApp2-20250905T140046Z-1-001\WindowsFormsApp2\WindowsFormsApp2\bin\Debug
+		Environment = По умолчанию
+		LaunchingEngine = 00000000-0000-0000-0000-000000000000
+		UseLegacyDebugEngines = No
+		LaunchSQLEngine = No
+		AttachLaunchAction = No
+		IORedirection = Auto
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C47BDE58-072B-4615-8FCF-27D6C6F585F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C47BDE58-072B-4615-8FCF-27D6C6F585F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C47BDE58-072B-4615-8FCF-27D6C6F585F0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C47BDE58-072B-4615-8FCF-27D6C6F585F0}.Debug|x86.Build.0 = Debug|Any CPU
+		{C47BDE58-072B-4615-8FCF-27D6C6F585F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C47BDE58-072B-4615-8FCF-27D6C6F585F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C47BDE58-072B-4615-8FCF-27D6C6F585F0}.Release|x86.ActiveCfg = Release|Any CPU
+		{C47BDE58-072B-4615-8FCF-27D6C6F585F0}.Release|x86.Build.0 = Release|Any CPU
+		{0FFA2BAC-ED0F-407F-AF4D-9481EF8EBB6A}.Debug|Any CPU.ActiveCfg = Release|x86
+		{0FFA2BAC-ED0F-407F-AF4D-9481EF8EBB6A}.Debug|x86.ActiveCfg = Release|x86
+		{0FFA2BAC-ED0F-407F-AF4D-9481EF8EBB6A}.Release|Any CPU.ActiveCfg = Release|x86
+		{0FFA2BAC-ED0F-407F-AF4D-9481EF8EBB6A}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4C7E7025-3BAD-489E-AA53-D87C17584547}
+	EndGlobalSection
+EndGlobal
