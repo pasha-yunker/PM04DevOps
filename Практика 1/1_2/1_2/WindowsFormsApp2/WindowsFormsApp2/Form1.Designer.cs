@@ -35,9 +35,9 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.Location = new System.Drawing.Point(250, 138);
+            this.textBox1.Location = new System.Drawing.Point(132, 138);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(300, 62);
+            this.textBox1.Size = new System.Drawing.Size(516, 62);
             this.textBox1.TabIndex = 0;
             // 
             // button1
