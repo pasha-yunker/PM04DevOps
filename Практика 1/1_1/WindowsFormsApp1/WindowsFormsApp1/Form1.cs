@@ -19,7 +19,7 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            label1.Text = "Привет, мир!";
+            label1.Text = "Привет, Павел Юнкер!";
         }
     }
 }
