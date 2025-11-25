@@ -27,7 +27,7 @@ namespace WindowsFormsApp2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox1.Text = "Привет, Павел Юнкер!";
+            textBox1.Text = "Привет, Павел Юнкер";
             Center();
         }
     }
