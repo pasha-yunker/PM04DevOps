@@ -65,7 +65,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
-            this.Text = "Привет, мир!";
+            this.Text = "Привет, мир! | Работа Павла Юнкер!";
             this.ResumeLayout(false);
             this.PerformLayout();
 
