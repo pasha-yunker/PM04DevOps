@@ -90,4 +90,5 @@
 
 Пара №3. 12:20 - 13:05, 13:10 - 13:55
 
+1. [Выполнение практического задания 8. «Настройки системы и обновлений»](https://docs.google.com/document/d/1KedKqmqFSicqO7mmbIddAAEwnd4ec82vWqzLfWfM7M8/edit?usp=drive_link)
 2. Запись отчета в дневник по практике.
