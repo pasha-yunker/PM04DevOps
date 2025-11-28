@@ -19,7 +19,7 @@ namespace _2_dop
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            label1.Font = new Font(label1.Font.FontFamily, label1.Font.Size + 1);
         }
     }
 }
