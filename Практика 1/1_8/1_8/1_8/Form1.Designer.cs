@@ -36,6 +36,7 @@ namespace _1_8
             this.trackMax = new System.Windows.Forms.TrackBar();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trackMin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackMax)).BeginInit();
             this.SuspendLayout();
@@ -43,26 +44,29 @@ namespace _1_8
             // trackMin
             // 
             this.trackMin.LargeChange = 1;
-            this.trackMin.Location = new System.Drawing.Point(12, 112);
+            this.trackMin.Location = new System.Drawing.Point(9, 91);
+            this.trackMin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.trackMin.Maximum = 100;
             this.trackMin.Name = "trackMin";
-            this.trackMin.Size = new System.Drawing.Size(776, 56);
+            this.trackMin.Size = new System.Drawing.Size(582, 45);
             this.trackMin.TabIndex = 0;
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 320);
+            this.progressBar1.Location = new System.Drawing.Point(9, 260);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(776, 38);
+            this.progressBar1.Size = new System.Drawing.Size(582, 31);
             this.progressBar1.Step = 1;
             this.progressBar1.TabIndex = 1;
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(347, 383);
+            this.button1.Location = new System.Drawing.Point(319, 309);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(101, 40);
+            this.button1.Size = new System.Drawing.Size(76, 32);
             this.button1.TabIndex = 2;
             this.button1.Text = "Сброс";
             this.button1.UseVisualStyleBackColor = true;
@@ -70,9 +74,10 @@ namespace _1_8
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(8, 23);
+            this.label1.Location = new System.Drawing.Point(6, 19);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(776, 40);
+            this.label1.Size = new System.Drawing.Size(582, 32);
             this.label1.TabIndex = 3;
             this.label1.Text = "label1";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -80,35 +85,50 @@ namespace _1_8
             // trackMax
             // 
             this.trackMax.LargeChange = 1;
-            this.trackMax.Location = new System.Drawing.Point(12, 209);
+            this.trackMax.Location = new System.Drawing.Point(9, 170);
+            this.trackMax.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.trackMax.Maximum = 100;
             this.trackMax.Name = "trackMax";
-            this.trackMax.Size = new System.Drawing.Size(776, 56);
+            this.trackMax.Size = new System.Drawing.Size(582, 45);
             this.trackMax.TabIndex = 4;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(51, 76);
+            this.label2.Location = new System.Drawing.Point(38, 62);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(30, 17);
+            this.label2.Size = new System.Drawing.Size(24, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "Min";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(51, 175);
+            this.label3.Location = new System.Drawing.Point(38, 142);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(33, 17);
+            this.label3.Size = new System.Drawing.Size(27, 13);
             this.label3.TabIndex = 6;
             this.label3.Text = "Max";
             // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button2.Location = new System.Drawing.Point(179, 309);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(121, 31);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Сгенерировать";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(600, 366);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.trackMax);
@@ -117,6 +137,7 @@ namespace _1_8
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.trackMin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
@@ -137,6 +158,7 @@ namespace _1_8
         private System.Windows.Forms.TrackBar trackMax;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button2;
     }
 }
 

@@ -18,7 +18,6 @@ namespace _1_8
         {
             InitializeComponent();
 
-
             trackMin.Scroll += TrackBars_Scroll;
             trackMax.Scroll += TrackBars_Scroll;
             button1.Click += ButtonReset_Click;
@@ -33,7 +32,7 @@ namespace _1_8
             {
                 trackMin.Value = trackMax.Value;
             }
-            GenerateRandomValue();
+            
         }
 
         private void GenerateRandomValue()
@@ -50,5 +49,9 @@ namespace _1_8
             GenerateRandomValue();
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            GenerateRandomValue();
+        }
     }
 }
