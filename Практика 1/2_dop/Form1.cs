@@ -20,6 +20,12 @@ namespace _2_dop
         private void button1_Click(object sender, EventArgs e)
         {
             label1.Font = new Font(label1.Font.FontFamily, label1.Font.Size + 1);
+
+            // Центрируем лейбл
+            label1.Location = new Point(
+                (this.ClientSize.Width - label1.Width) / 2,
+                label1.Location.Y
+            );
         }
     }
 }
