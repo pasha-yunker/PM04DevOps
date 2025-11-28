@@ -5,7 +5,7 @@ import math
 class EllipseApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("Эллипс с эксцентриситетом")
+        self.root.title("Эллипс с эксцентриситетом | Работа Павла Юнкер")
         self.root.geometry("700x500")
         
         # Константы
