@@ -15,9 +15,6 @@ namespace _1_dop
         public Form1()
         {
             InitializeComponent();
-
-            progressBar1.ForeColor = Color.Red; // Цвет заполнения
-            progressBar1.BackColor = Color.LightGray; // Цвет фона
         }
     }
 }
