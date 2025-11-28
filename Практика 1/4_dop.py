@@ -27,7 +27,7 @@ trackbar.set(100)  # Начальное значение
 trackbar.pack(pady=20)
 
 # Создаем Label для отображения радиуса
-label = tk.Label(root, text="Радиус: 100px", font=("Arial", 14))
+label = tk.Label(root, text="Радиус: 100px", font=("Arial", 16))
 label.pack()
 
 # Создаем Canvas для рисования
