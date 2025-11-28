@@ -19,7 +19,7 @@ def update_circle(event=None):
 # Создаем главное окно
 root = tk.Tk()
 root.title("Круг с изменяемым радиусом")
-root.geometry("600x400")
+root.geometry("600x600")
 
 # Создаем TrackBar (Scale)
 trackbar = ttk.Scale(root, from_=10, to=200, orient="horizontal", command=update_circle)
@@ -31,7 +31,7 @@ label = tk.Label(root, text="Радиус: 100px", font=("Arial", 14))
 label.pack()
 
 # Создаем Canvas для рисования
-canvas = tk.Canvas(root, width=600, height=300, bg="white")
+canvas = tk.Canvas(root, width=600, height=600, bg="white")
 canvas.pack()
 
 # Инициализируем круг
