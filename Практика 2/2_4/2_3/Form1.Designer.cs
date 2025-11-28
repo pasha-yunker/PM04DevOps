@@ -90,7 +90,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
-            this.Text = "Генерация случайных чисел трек баром";
+            this.Text = "Генерация случайных чисел трек баром | работа Павла Юнкер";
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
