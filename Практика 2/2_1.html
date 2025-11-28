@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Круглая кнопка</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .round-button {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #ff6b6b, #ff8e8e);
+            border: none;
+            box-shadow: 
+                0 8px 20px rgba(255, 107, 107, 0.4),
+                0 0 0 4px rgba(255, 255, 255, 0.1),
+                inset 0 -4px 8px rgba(0, 0, 0, 0.2),
+                inset 0 4px 8px rgba(255, 255, 255, 0.4);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .round-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .round-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 12px 25px rgba(255, 107, 107, 0.5),
+                0 0 0 4px rgba(255, 255, 255, 0.15),
+                inset 0 -4px 8px rgba(0, 0, 0, 0.2),
+                inset 0 4px 8px rgba(255, 255, 255, 0.4);
+        }
+
+        .round-button:hover::before {
+            opacity: 1;
+        }
+
+        .round-button:active {
+            transform: translateY(2px);
+            box-shadow: 
+                0 4px 12px rgba(255, 107, 107, 0.3),
+                0 0 0 4px rgba(255, 255, 255, 0.05),
+                inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+                inset 0 2px 4px rgba(255, 255, 255, 0.2);
+        }
+
+        .round-button:active::before {
+            opacity: 0;
+        }
+
+        .button-text {
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <button class="round-button" onclick="handleClick()">
+        <span class="button-text">Нажать</span>
+    </button>
+
+    <script>
+        function handleClick() {
+            //alert('Кнопка нажата!');
+            
+            // Анимация нажатия
+            const button = document.querySelector('.round-button');
+            button.style.transform = 'scale(0.95)';
+            
+            setTimeout(() => {
+                button.style.transform = '';
+            }, 150);
+        }
+    </script>
+</body>
+</html>
