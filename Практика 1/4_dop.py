@@ -18,7 +18,7 @@ def update_circle(event=None):
 
 # Создаем главное окно
 root = tk.Tk()
-root.title("Круг с изменяемым радиусом")
+root.title("Круг с изменяемым радиусом | Работа Павла Юнкер")
 root.geometry("600x600")
 
 # Создаем TrackBar (Scale)
