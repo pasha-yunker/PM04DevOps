@@ -25,16 +25,22 @@ namespace _1_4
             for (int i = 1; i <= 10; i++)
             {
                 int pr = i * 10;
-                if (trackBar1.Value >= pr)
+                if (trackBar1.Value >= pr )
                 {
                     max = pr;
                 }
+            }
+
+            if (trackBar1.Value >= 100)
+            {
+                max = 100;
             }
 
             // Обновляем все элементы
             for (int i = 1; i <= 10; i++)
             {
                 int pr = i * 10;
+
                 Label label = Controls.Find($"label{i}", true).FirstOrDefault() as Label;
                 Panel panel = Controls.Find($"panel{i}", true).FirstOrDefault() as Panel;
 
@@ -43,11 +49,13 @@ namespace _1_4
                     if (pr <= max) // Все значения до максимального включительно
                     {
                         panel.BackColor = Color.Green;
+
                         if (pr == max) // Только для максимального показываем лейбл
                         {
                             label.Visible = true;
                             label.Text = $"{pr} %";
                         }
+                        
                         else
                         {
                             label.Visible = false;
