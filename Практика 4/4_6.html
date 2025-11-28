@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎵 Игра "Повтори мелодию"</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            color: white;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #e0e0e0;
+        }
+        
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 15px;
+        }
+        
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .info-label {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            color: #e0e0e0;
+        }
+        
+        .info-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .melody-display {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .melody-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #ffcc00;
+        }
+        
+        .melody-sequence {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .note-indicator {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s;
+        }
+        
+        .note-indicator.active {
+            background: #ffcc00;
+            transform: scale(1.2);
+            box-shadow: 0 0 15px #ffcc00;
+        }
+        
+        .note-indicator.correct {
+            background: #4CAF50;
+        }
+        
+        .note-indicator.incorrect {
+            background: #f44336;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .control-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .play-btn {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .play-btn:hover {
+            background: #45a049;
+            transform: translateY(-3px);
+        }
+        
+        .repeat-btn {
+            background: #2196F3;
+            color: white;
+        }
+        
+        .repeat-btn:hover {
+            background: #0b7dda;
+            transform: translateY(-3px);
+        }
+        
+        .notes-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .note-btn {
+            aspect-ratio: 1;
+            border: none;
+            border-radius: 15px;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        
+        .note-btn:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .note-btn.pressed {
+            transform: scale(0.95);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .feedback {
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        
+        .feedback.correct {
+            color: #4CAF50;
+            text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+        }
+        
+        .feedback.incorrect {
+            color: #f44336;
+            text-shadow: 0 0 10px rgba(244, 67, 54, 0.5);
+        }
+        
+        .level-progress {
+            width: 100%;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #8BC34A);
+            width: 0%;
+            transition: width 0.5s;
+        }
+        
+        .instructions {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        
+        .instructions h3 {
+            margin-bottom: 10px;
+            color: #ffcc00;
+        }
+        
+        .instructions ol {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        
+        .celebration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+            display: none;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ffcc00;
+            opacity: 0;
+        }
+        
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .notes-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .note-btn {
+                font-size: 1.8rem;
+            }
+            
+            .game-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 Повтори мелодию</h1>
+        <p class="subtitle">Слушай мелодию и повторяй её, нажимая на ноты!</p>
+        
+        <div class="game-info">
+            <div class="info-item">
+                <span class="info-label">Уровень</span>
+                <span class="info-value" id="level">1</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Очки</span>
+                <span class="info-value" id="score">0</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Жизни</span>
+                <span class="info-value" id="lives">3</span>
+            </div>
+        </div>
+        
+        <div class="melody-display">
+            <div class="melody-title" id="melodyTitle">Мелодия #1</div>
+            <div class="melody-sequence" id="melodySequence">
+                <!-- Индикаторы нот будут добавляться здесь -->
+            </div>
+            <div class="level-progress">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button class="control-btn play-btn" id="playBtn">
+                ▶️ Воспроизвести
+            </button>
+            <button class="control-btn repeat-btn" id="repeatBtn">
+                🔄 Повторить
+            </button>
+        </div>
+        
+        <div class="feedback" id="feedback">
+            Нажми "Воспроизвести", чтобы услышать мелодию!
+        </div>
+        
+        <div class="notes-container" id="notesContainer">
+            <!-- Кнопки нот будут добавляться здесь -->
+        </div>
+        
+        <div class="instructions">
+            <h3>Как играть:</h3>
+            <ol>
+                <li>Нажми кнопку "Воспроизвести", чтобы послушать мелодию</li>
+                <li>Запомни последовательность нот</li>
+                <li>Повтори мелодию, нажимая на ноты в правильном порядке</li>
+                <li>Зарабатывай очки и переходи на новые уровни!</li>
+            </ol>
+        </div>
+    </div>
+    
+    <div class="celebration" id="celebration">
+        <!-- Конфетти для анимации праздника -->
+    </div>
+
+    <script>
+        // Элементы DOM
+        const levelElement = document.getElementById('level');
+        const scoreElement = document.getElementById('score');
+        const livesElement = document.getElementById('lives');
+        const melodyTitle = document.getElementById('melodyTitle');
+        const melodySequence = document.getElementById('melodySequence');
+        const progressBar = document.getElementById('progressBar');
+        const playBtn = document.getElementById('playBtn');
+        const repeatBtn = document.getElementById('repeatBtn');
+        const feedback = document.getElementById('feedback');
+        const notesContainer = document.getElementById('notesContainer');
+        const celebration = document.getElementById('celebration');
+        
+        // Переменные игры
+        let level = 1;
+        let score = 0;
+        let lives = 3;
+        let currentMelody = [];
+        let userSequence = [];
+        let isPlaying = false;
+        let isUserTurn = false;
+        let notePlaySpeed = 800; // скорость воспроизведения нот в мс
+        
+        // Ноты и их частоты
+        const notes = [
+            { id: 'C', emoji: '🎵', frequency: 261.63, color: '#FF5252' },
+            { id: 'D', emoji: '🎶', frequency: 293.66, color: '#FF9800' },
+            { id: 'E', emoji: '🎼', frequency: 329.63, color: '#FFEB3B' },
+            { id: 'F', emoji: '🎹', frequency: 349.23, color: '#4CAF50' },
+            { id: 'G', emoji: '🎤', frequency: 392.00, color: '#2196F3' },
+            { id: 'A', emoji: '🎧', frequency: 440.00, color: '#9C27B0' },
+            { id: 'B', emoji: '🥁', frequency: 493.88, color: '#E91E63' },
+            { id: 'C2', emoji: '🎻', frequency: 523.25, color: '#00BCD4' }
+        ];
+        
+        // Инициализация аудиоконтекста
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+        // Функция для воспроизведения ноты
+        function playNote(frequency, duration = 0.5) {
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+            
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.type = 'sine';
+            oscillator.frequency.value = frequency;
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + duration);
+            
+            return oscillator;
+        }
+        
+        // Функция создания кнопок нот
+        function createNoteButtons() {
+            notesContainer.innerHTML = '';
+            
+            notes.forEach(note => {
+                const button = document.createElement('button');
+                button.className = 'note-btn';
+                button.innerHTML = note.emoji;
+                button.dataset.note = note.id;
+                button.style.background = note.color;
+                
+                button.addEventListener('click', () => {
+                    if (!isUserTurn) return;
+                    
+                    // Визуальная обратная связь
+                    button.classList.add('pressed');
+                    setTimeout(() => {
+                        button.classList.remove('pressed');
+                    }, 200);
+                    
+                    // Воспроизведение ноты
+                    playNote(note.frequency, 0.3);
+                    
+                    // Добавление ноты в последовательность пользователя
+                    userSequence.push(note.id);
+                    
+                    // Проверка последовательности
+                    checkUserSequence();
+                });
+                
+                notesContainer.appendChild(button);
+            });
+        }
+        
+        // Функция генерации случайной мелодии
+        function generateMelody() {
+            currentMelody = [];
+            const melodyLength = 3 + level; // Длина мелодии увеличивается с уровнем
+            
+            for (let i = 0; i < melodyLength; i++) {
+                const randomIndex = Math.floor(Math.random() * notes.length);
+                currentMelody.push(notes[randomIndex].id);
+            }
+            
+            // Обновление отображения последовательности
+            updateMelodyDisplay();
+        }
+        
+        // Функция обновления отображения мелодии
+        function updateMelodyDisplay() {
+            melodySequence.innerHTML = '';
+            melodyTitle.textContent = `Мелодия #${level}`;
+            
+            currentMelody.forEach(noteId => {
+                const noteIndicator = document.createElement('div');
+                noteIndicator.className = 'note-indicator';
+                noteIndicator.textContent = notes.find(note => note.id === noteId).emoji;
+                noteIndicator.dataset.note = noteId;
+                melodySequence.appendChild(noteIndicator);
+            });
+        }
+        
+        // Функция воспроизведения мелодии
+        function playMelody() {
+            if (isPlaying) return;
+            
+            isPlaying = true;
+            playBtn.disabled = true;
+            feedback.textContent = 'Слушай внимательно...';
+            feedback.className = 'feedback';
+            
+            let delay = 0;
+            
+            currentMelody.forEach((noteId, index) => {
+                setTimeout(() => {
+                    // Визуальный индикатор активной ноты
+                    const noteIndicators = document.querySelectorAll('.note-indicator');
+                    noteIndicators[index].classList.add('active');
+                    
+                    // Воспроизведение ноты
+                    const note = notes.find(n => n.id === noteId);
+                    playNote(note.frequency, 0.5);
+                    
+                    // Убрать подсветку после воспроизведения
+                    setTimeout(() => {
+                        noteIndicators[index].classList.remove('active');
+                    }, notePlaySpeed - 100);
+                    
+                }, delay);
+                
+                delay += notePlaySpeed;
+            });
+            
+            setTimeout(() => {
+                isPlaying = false;
+                playBtn.disabled = false;
+                isUserTurn = true;
+                feedback.textContent = 'Твоя очередь! Повтори мелодию.';
+            }, delay);
+        }
+        
+        // Функция проверки последовательности пользователя
+        function checkUserSequence() {
+            const currentIndex = userSequence.length - 1;
+            const noteIndicators = document.querySelectorAll('.note-indicator');
+            
+            // Подсветка текущей ноты в последовательности
+            if (currentIndex < noteIndicators.length) {
+                noteIndicators[currentIndex].classList.add('active');
+                
+                // Проверка правильности ноты
+                if (userSequence[currentIndex] === currentMelody[currentIndex]) {
+                    noteIndicators[currentIndex].classList.add('correct');
+                    feedback.textContent = 'Правильно! Продолжай...';
+                    feedback.className = 'feedback correct';
+                } else {
+                    noteIndicators[currentIndex].classList.add('incorrect');
+                    feedback.textContent = 'Ошибка! Попробуй ещё раз.';
+                    feedback.className = 'feedback incorrect';
+                    
+                    // Уменьшение жизней
+                    lives--;
+                    livesElement.textContent = lives;
+                    
+                    // Сброс хода пользователя
+                    setTimeout(() => {
+                        resetUserTurn();
+                        if (lives <= 0) {
+                            gameOver();
+                        } else {
+                            feedback.textContent = 'Нажми "Повторить", чтобы попробовать снова.';
+                        }
+                    }, 1000);
+                    
+                    return;
+                }
+            }
+            
+            // Проверка завершения последовательности
+            if (userSequence.length === currentMelody.length) {
+                // Успешное завершение уровня
+                score += level * 10;
+                scoreElement.textContent = score;
+                
+                feedback.textContent = 'Отлично! Мелодия воспроизведена правильно!';
+                feedback.className = 'feedback correct';
+                
+                // Анимация праздника
+                createConfetti();
+                
+                // Переход на следующий уровень
+                setTimeout(() => {
+                    level++;
+                    levelElement.textContent = level;
+                    
+                    // Обновление прогресса
+                    progressBar.style.width = `${((level - 1) % 5) * 20}%`;
+                    
+                    // Сброс для нового уровня
+                    resetUserTurn();
+                    generateMelody();
+                    
+                    // Увеличиваем сложность
+                    if (level % 3 === 0 && notePlaySpeed > 300) {
+                        notePlaySpeed -= 100;
+                    }
+                    
+                    feedback.textContent = 'Готов к следующей мелодии? Нажми "Воспроизвести"!';
+                }, 1500);
+            }
+        }
+        
+        // Функция сброса хода пользователя
+        function resetUserTurn() {
+            userSequence = [];
+            isUserTurn = false;
+            
+            // Сброс визуальных индикаторов
+            const noteIndicators = document.querySelectorAll('.note-indicator');
+            noteIndicators.forEach(indicator => {
+                indicator.classList.remove('active', 'correct', 'incorrect');
+            });
+        }
+        
+        // Функция завершения игры
+        function gameOver() {
+            feedback.textContent = `Игра окончена! Твой счёт: ${score}`;
+            feedback.className = 'feedback incorrect';
+            
+            // Предложение начать заново
+            setTimeout(() => {
+                if (confirm(`Игра окончена! Твой счёт: ${score}. Хочешь сыграть ещё раз?`)) {
+                    resetGame();
+                }
+            }, 1000);
+        }
+        
+        // Функция сброса игры
+        function resetGame() {
+            level = 1;
+            score = 0;
+            lives = 3;
+            notePlaySpeed = 800;
+            
+            levelElement.textContent = level;
+            scoreElement.textContent = score;
+            livesElement.textContent = lives;
+            progressBar.style.width = '0%';
+            
+            resetUserTurn();
+            generateMelody();
+            feedback.textContent = 'Нажми "Воспроизвести", чтобы услышать мелодию!';
+        }
+        
+        // Функция создания конфетти для праздника
+        function createConfetti() {
+            celebration.style.display = 'block';
+            celebration.innerHTML = '';
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                confetti.style.animation = `confetti-fall ${2 + Math.random() * 3}s linear forwards`;
+                confetti.style.animationDelay = `${Math.random() * 2}s`;
+                celebration.appendChild(confetti);
+            }
+            
+            setTimeout(() => {
+                celebration.style.display = 'none';
+            }, 3000);
+        }
+        
+        // Обработчики событий
+        playBtn.addEventListener('click', playMelody);
+        
+        repeatBtn.addEventListener('click', () => {
+            if (isPlaying) return;
+            resetUserTurn();
+            playMelody();
+        });
+        
+        // Автоматический запуск при первом клике (для мобильных устройств)
+        document.addEventListener('click', function initAudio() {
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+            document.removeEventListener('click', initAudio);
+        });
+        
+        // Инициализация игры
+        createNoteButtons();
+        generateMelody();
+    </script>
+</body>
+</html>
