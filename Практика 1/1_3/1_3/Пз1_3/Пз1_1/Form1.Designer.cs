@@ -68,7 +68,7 @@ namespace Пз1_1
             this.Controls.Add(this.button1);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
-            this.Text = "Увеличение значения";
+            this.Text = "Увеличение значения | Работа Павла Юнкер";
             this.ResumeLayout(false);
 
         }
