@@ -45,7 +45,7 @@ namespace _1_8
             // 
             this.trackMin.LargeChange = 1;
             this.trackMin.Location = new System.Drawing.Point(9, 91);
-            this.trackMin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.trackMin.Margin = new System.Windows.Forms.Padding(2);
             this.trackMin.Maximum = 100;
             this.trackMin.Name = "trackMin";
             this.trackMin.Size = new System.Drawing.Size(582, 45);
@@ -54,7 +54,7 @@ namespace _1_8
             // progressBar1
             // 
             this.progressBar1.Location = new System.Drawing.Point(9, 260);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(2);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(582, 31);
             this.progressBar1.Step = 1;
@@ -64,7 +64,7 @@ namespace _1_8
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button1.Location = new System.Drawing.Point(319, 309);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(76, 32);
             this.button1.TabIndex = 2;
@@ -86,7 +86,7 @@ namespace _1_8
             // 
             this.trackMax.LargeChange = 1;
             this.trackMax.Location = new System.Drawing.Point(9, 170);
-            this.trackMax.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.trackMax.Margin = new System.Windows.Forms.Padding(2);
             this.trackMax.Maximum = 100;
             this.trackMax.Name = "trackMax";
             this.trackMax.Size = new System.Drawing.Size(582, 45);
@@ -137,11 +137,11 @@ namespace _1_8
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.trackMin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
-            this.Text = "Область случайных чисел для прогресс бара";
+            this.Text = "Область случайных чисел для прогресс бара | Работа Павла Юнкер";
             ((System.ComponentModel.ISupportInitialize)(this.trackMin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackMax)).EndInit();
             this.ResumeLayout(false);
