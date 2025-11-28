@@ -57,7 +57,7 @@ namespace _1_4
             // 
             this.trackBar1.LargeChange = 1;
             this.trackBar1.Location = new System.Drawing.Point(176, 170);
-            this.trackBar1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.trackBar1.Margin = new System.Windows.Forms.Padding(2);
             this.trackBar1.Maximum = 100;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(368, 45);
@@ -68,7 +68,7 @@ namespace _1_4
             // 
             this.panel1.BackColor = System.Drawing.Color.Red;
             this.panel1.Location = new System.Drawing.Point(94, 320);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(26, 28);
             this.panel1.TabIndex = 2;
@@ -77,7 +77,7 @@ namespace _1_4
             // 
             this.panel2.BackColor = System.Drawing.Color.Red;
             this.panel2.Location = new System.Drawing.Point(94, 287);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(26, 28);
             this.panel2.TabIndex = 3;
@@ -86,7 +86,7 @@ namespace _1_4
             // 
             this.panel3.BackColor = System.Drawing.Color.Red;
             this.panel3.Location = new System.Drawing.Point(94, 254);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(26, 28);
             this.panel3.TabIndex = 3;
@@ -95,7 +95,7 @@ namespace _1_4
             // 
             this.panel4.BackColor = System.Drawing.Color.Red;
             this.panel4.Location = new System.Drawing.Point(94, 220);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(26, 28);
             this.panel4.TabIndex = 3;
@@ -104,7 +104,7 @@ namespace _1_4
             // 
             this.panel5.BackColor = System.Drawing.Color.Red;
             this.panel5.Location = new System.Drawing.Point(94, 187);
-            this.panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(26, 28);
             this.panel5.TabIndex = 3;
@@ -113,7 +113,7 @@ namespace _1_4
             // 
             this.panel6.BackColor = System.Drawing.Color.Red;
             this.panel6.Location = new System.Drawing.Point(94, 154);
-            this.panel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel6.Margin = new System.Windows.Forms.Padding(2);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(26, 28);
             this.panel6.TabIndex = 5;
@@ -122,7 +122,7 @@ namespace _1_4
             // 
             this.panel7.BackColor = System.Drawing.Color.Red;
             this.panel7.Location = new System.Drawing.Point(94, 120);
-            this.panel7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel7.Margin = new System.Windows.Forms.Padding(2);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(26, 28);
             this.panel7.TabIndex = 6;
@@ -131,7 +131,7 @@ namespace _1_4
             // 
             this.panel8.BackColor = System.Drawing.Color.Red;
             this.panel8.Location = new System.Drawing.Point(94, 87);
-            this.panel8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel8.Margin = new System.Windows.Forms.Padding(2);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(26, 28);
             this.panel8.TabIndex = 7;
@@ -140,7 +140,7 @@ namespace _1_4
             // 
             this.panel9.BackColor = System.Drawing.Color.Red;
             this.panel9.Location = new System.Drawing.Point(94, 54);
-            this.panel9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel9.Margin = new System.Windows.Forms.Padding(2);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(26, 28);
             this.panel9.TabIndex = 8;
@@ -149,7 +149,7 @@ namespace _1_4
             // 
             this.panel10.BackColor = System.Drawing.Color.Red;
             this.panel10.Location = new System.Drawing.Point(94, 20);
-            this.panel10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel10.Margin = new System.Windows.Forms.Padding(2);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(26, 28);
             this.panel10.TabIndex = 4;
@@ -281,10 +281,10 @@ namespace _1_4
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.trackBar1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimizeBox = false;
             this.Name = "Form1";
-            this.Text = "Вертикальный прогресс бар";
+            this.Text = "Вертикальный прогресс бар | Работа Павла Юнкер";
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
