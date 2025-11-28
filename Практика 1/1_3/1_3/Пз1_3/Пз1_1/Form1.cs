@@ -22,7 +22,6 @@ namespace Пз1_1
         private void Form1_Resize(object sender, EventArgs e)
         {
             CenterControls(); // Центрируем при каждом изменении размера
-            
         }
 
         private void CenterControls()
