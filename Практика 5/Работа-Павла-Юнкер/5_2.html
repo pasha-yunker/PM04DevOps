@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивный термометр  | Работа Павла Юнкер</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 28px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .thermometer-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            margin: 25px 0;
+        }
+
+        .thermometer {
+            position: relative;
+            height: 300px;
+            width: 80px;
+        }
+
+        .thermometer-body {
+            width: 30px;
+            height: 250px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            position: absolute;
+            left: 25px;
+            top: 0;
+            overflow: hidden;
+            border: 2px solid #e0e0e0;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .thermometer-scale {
+            position: absolute;
+            left: -25px;
+            top: 0;
+            bottom: 0;
+            width: 20px;
+            z-index: 1;
+        }
+
+        .scale-mark {
+            position: absolute;
+            left: 0;
+            font-size: 12px;
+            color: #7f8c8d;
+            transform: translateX(-100%);
+            padding-right: 5px;
+            font-weight: 500;
+        }
+
+        .scale-line {
+            position: absolute;
+            left: -5px;
+            width: 5px;
+            height: 1px;
+            background: #bdc3c7;
+        }
+
+        .thermometer-liquid {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, #3498db, #e74c3c);
+            border-radius: 12px 12px 0 0;
+            transition: height 0.5s ease, background 0.5s ease;
+            height: 40%;
+        }
+
+        .thermometer-bulb {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #3498db, #e74c3c);
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+            left: 10px;
+            border: 2px solid #e0e0e0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        .temperature-display {
+            font-size: 52px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin: 25px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .controls {
+            margin: 30px 0 20px;
+            padding: 0 10px;
+        }
+
+        .track-bar {
+            width: 100%;
+            height: 16px;
+            background: #ecf0f1;
+            border-radius: 10px;
+            outline: none;
+            -webkit-appearance: none;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .track-bar::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 32px;
+            height: 32px;
+            background: #fff;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid #3498db;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .track-bar::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .track-bar::-moz-range-thumb {
+            width: 32px;
+            height: 32px;
+            background: #fff;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid #3498db;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 12px;
+            color: #7f8c8d;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .status {
+            font-size: 18px;
+            margin-top: 20px;
+            padding: 12px 20px;
+            border-radius: 50px;
+            background: #f8f9fa;
+            transition: all 0.4s ease;
+            display: inline-block;
+            min-width: 200px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .status.cold { 
+            color: #2980b9; 
+            background: #e1f5fe; 
+            box-shadow: 0 3px 15px rgba(41, 128, 185, 0.3);
+        }
+        .status.cool { 
+            color: #27ae60; 
+            background: #e8f5e9; 
+            box-shadow: 0 3px 15px rgba(39, 174, 96, 0.3);
+        }
+        .status.normal { 
+            color: #f39c12; 
+            background: #fff8e1; 
+            box-shadow: 0 3px 15px rgba(243, 156, 18, 0.3);
+        }
+        .status.warm { 
+            color: #e67e22; 
+            background: #fff3e0; 
+            box-shadow: 0 3px 15px rgba(230, 126, 34, 0.3);
+        }
+        .status.hot { 
+            color: #e74c3c; 
+            background: #ffebee; 
+            box-shadow: 0 3px 15px rgba(231, 76, 60, 0.3);
+        }
+
+        .instructions {
+            margin-top: 25px;
+            color: #7f8c8d;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .pulse {
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .thermometer {
+                height: 250px;
+            }
+            
+            .thermometer-body {
+                height: 200px;
+            }
+            
+            .temperature-display {
+                font-size: 44px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Интерактивный термометр</h1>
+        <p class="subtitle">Измените температуру с помощью ползунка</p>
+        
+        <div class="thermometer-wrapper">
+            <div class="thermometer">
+                <div class="thermometer-scale" id="scale">
+                    <!-- Шкала будет создана через JavaScript -->
+                </div>
+                <div class="thermometer-body">
+                    <div class="thermometer-liquid" id="mercury"></div>
+                </div>
+                <div class="thermometer-bulb"></div>
+            </div>
+        </div>
+        
+        <div class="temperature-display" id="temperature-value">20°C</div>
+        
+        <div class="controls">
+            <input type="range" 
+                   id="temperature-slider" 
+                   min="-30" 
+                   max="50" 
+                   value="20" 
+                   step="1"
+                   class="track-bar">
+            <div class="slider-labels">
+                <span>-30°C</span>
+                <span>50°C</span>
+            </div>
+        </div>
+        
+        <div class="status" id="temperature-status">Комнатная температура</div>
+        
+        <div class="instructions">
+            Используйте ползунок для изменения температуры или клавиши ← → на клавиатуре
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.getElementById('temperature-slider');
+            const temperatureValue = document.getElementById('temperature-value');
+            const mercury = document.getElementById('mercury');
+            const status = document.getElementById('temperature-status');
+            const scale = document.getElementById('scale');
+            
+            // Создание шкалы
+            function createScale() {
+                const minTemp = -30;
+                const maxTemp = 50;
+                
+                for (let i = minTemp; i <= maxTemp; i += 10) {
+                    const mark = document.createElement('div');
+                    mark.className = 'scale-mark';
+                    
+                    const line = document.createElement('div');
+                    line.className = 'scale-line';
+                    
+                    // Позиционирование отметки
+                    const percentage = ((i - minTemp) / (maxTemp - minTemp)) * 100;
+                    mark.style.bottom = `${percentage}%`;
+                    line.style.bottom = `${percentage}%`;
+                    
+                    mark.textContent = `${i}°C`;
+                    
+                    scale.appendChild(mark);
+                    scale.appendChild(line);
+                }
+            }
+            
+            // Обновление температуры
+            function updateTemperature(value) {
+                const temp = parseInt(value);
+                
+                // Обновление числового значения
+                temperatureValue.textContent = `${temp}°C`;
+                
+                // Обновление уровня ртути
+                updateMercuryLevel(temp);
+                
+                // Обновление статуса
+                updateStatus(temp);
+                
+                // Анимация изменения
+                animateChange();
+            }
+            
+            // Обновление уровня ртути
+            function updateMercuryLevel(temp) {
+                const minTemp = -30;
+                const maxTemp = 50;
+                const percentage = ((temp - minTemp) / (maxTemp - minTemp)) * 100;
+                
+                // Ограничение процента для лучшего визуала
+                const constrainedPercentage = Math.max(5, Math.min(95, percentage));
+                
+                mercury.style.height = `${constrainedPercentage}%`;
+                
+                // Изменение цвета в зависимости от температуры
+                updateMercuryColor(temp);
+            }
+            
+            // Обновление цвета ртути
+            function updateMercuryColor(temp) {
+                let color;
+                if (temp < -10) {
+                    color = 'linear-gradient(to top, #2980b9, #3498db)'; // Холодный синий
+                } else if (temp < 0) {
+                    color = 'linear-gradient(to top, #3498db, #1abc9c)'; // Прохладный бирюзовый
+                } else if (temp < 15) {
+                    color = 'linear-gradient(to top, #1abc9c, #2ecc71)'; // Свежий зеленый
+                } else if (temp < 25) {
+                    color = 'linear-gradient(to top, #2ecc71, #f1c40f)'; // Теплый желтый
+                } else if (temp < 35) {
+                    color = 'linear-gradient(to top, #f1c40f, #e67e22)'; // Горячий оранжевый
+                } else {
+                    color = 'linear-gradient(to top, #e67e22, #e74c3c)'; // Очень горячий красный
+                }
+                mercury.style.background = color;
+            }
+            
+            // Обновление статуса
+            function updateStatus(temp) {
+                let statusText, statusClass;
+                
+                if (temp < -10) {
+                    statusText = '❄️ Сильный мороз';
+                    statusClass = 'cold';
+                } else if (temp < 0) {
+                    statusText = '☁️ Морозно';
+                    statusClass = 'cold';
+                } else if (temp < 10) {
+                    statusText = '🌥️ Прохладно';
+                    statusClass = 'cool';
+                } else if (temp < 20) {
+                    statusText = '⛅ Умеренно';
+                    statusClass = 'normal';
+                } else if (temp < 30) {
+                    statusText = '🌤️ Комнатная температура';
+                    statusClass = 'warm';
+                } else {
+                    statusText = '🔥 Жарко';
+                    statusClass = 'hot';
+                }
+                
+                status.textContent = statusText;
+                status.className = `status ${statusClass}`;
+                
+                // Добавляем пульсацию для экстремальных температур
+                if (temp < -15 || temp > 40) {
+                    status.classList.add('pulse');
+                } else {
+                    status.classList.remove('pulse');
+                }
+            }
+            
+            // Анимация изменения
+            function animateChange() {
+                temperatureValue.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    temperatureValue.style.transform = 'scale(1)';
+                }, 200);
+            }
+            
+            // Инициализация
+            function init() {
+                createScale();
+                updateTemperature(slider.value);
+                
+                // Обработчик изменения ползунка
+                slider.addEventListener('input', (e) => {
+                    updateTemperature(e.target.value);
+                });
+                
+                // Обработчик клавиатуры
+                document.addEventListener('keydown', (e) => {
+                    let currentValue = parseInt(slider.value);
+                    
+                    if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        slider.value = Math.min(currentValue + 1, parseInt(slider.max));
+                        updateTemperature(slider.value);
+                    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        slider.value = Math.max(currentValue - 1, parseInt(slider.min));
+                        updateTemperature(slider.value);
+                    }
+                });
+            }
+            
+            // Запуск приложения
+            init();
+        });
+    </script>
+</body>
+</html>
