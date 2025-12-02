@@ -8,7 +8,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg  # для вст
 # Создаем главное окно приложения
 root = tk.Tk()
 # Устанавливаем заголовок окна
-root.title("Гармонические колебания")
+root.title("Гармонические колебания | Работа Павла Юнкер")
 # Устанавливаем размер окна
 root.geometry("800x600")
 
