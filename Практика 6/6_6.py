@@ -9,7 +9,7 @@ y_cos = np.cos(x)   # Косинус от X
 plt.figure(figsize=(10, 6))  # Задаем размер графика  
 
 # Меняем название окна
-plt.gcf().canvas.manager.set_window_title('Графики sin, cos')
+plt.gcf().canvas.manager.set_window_title('Графики sin, cos | Работа Павла Юнкер')
 
 # Рисуем график синуса
 plt.plot(x, y_sin, label='sin(x)', color='blue', linewidth=2)
