@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Image Transmission Simulator</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body { font-family: sans-serif; }
+        .container { display: flex; flex-direction: column; align-items: center; }
+        .controls { margin: 10px; padding: 10px; border: 1px solid #ccc; }
+        .image-container { display: flex; justify-content: space-around; width: 100%; }
+        .chart-container { width: 80%; height: 400px; margin-top: 20px; }
+        canvas { border: 1px solid black; max-width: 45%; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Симулятор передачи изображения через сеть | Работа Павла Юнкер</h1>
+
+        <div class="controls">
+            <label for="networkSpeed">Скорость сети (пакетов/так): </label>
+            <input type="range" id="networkSpeed" min="1" max="50" value="10">
+            <span id="speedValue">10</span>
+            <br>
+
+            <label for="packetLoss">Вероятность потери пакета (%): </label>
+            <input type="range" id="packetLoss" min="0" max="20" value="5">
+            <span id="lossValue">5</span>
+            <br>
+
+            <label for="bitError">Вероятность ошибки в бите (%): </label>
+            <input type="range" id="bitError" min="0" max="10" value="1">
+            <span id="errorValue">1</span>
+            <br>
+
+            <label for="packetSize">Размер пакета (байт): </label>
+            <input type="range" id="packetSize" min="8" max="128" step="8" value="64">
+            <span id="sizeValue">64</span>
+            <br>
+
+            <button id="simulateBtn">Запустить симуляцию</button>
+            <button id="resetBtn">Сбросить изображение</button>
+        </div>
+
+        <div class="image-container">
+            <div>
+                <h3>Исходное изображение</h3>
+                <canvas id="originalCanvas"></canvas>
+            </div>
+            <div>
+                <h3>Принятое изображение</h3>
+                <canvas id="receivedCanvas"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <h3>Эффективность передачи</h3>
+            <div id="chart"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
